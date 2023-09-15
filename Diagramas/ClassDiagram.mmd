@@ -1,0 +1,84 @@
+classDiagram
+  
+    class Laboratorio {
+    +int numeroSolicitud
+    +string fechaSolicitud
+    +string estado
+    +string fechaFinalizacion
+    +registrarSolicitud()
+    +actualizarEstado()
+    +generarInforme()
+  }
+
+  class Recepcionista {
+    +string nombre
+    +string apellido
+    +registrarSolicitud()
+  }
+
+  class Paciente {
+    +string nombre
+    +string apellido
+    +string documento
+    +string direccion
+    +string telefono
+    +string email
+    +registrarPaciente()
+  }
+
+  class Medico {
+    +string nombre
+    +string apellido
+    +string matricula
+    +validarMatricula()
+  }
+
+  class Extraccionista {
+    +string nombre
+    +string apellido
+    +asignarSolicitud()
+    +registrarMuestra()
+  }
+
+  class ResponsableAnalisis {
+    +registrarResultado()
+  }
+
+  class Estudio {
+    +string codigo
+    +string nombre
+    +string metodo
+    +string unidadMedida
+    +string rangoReferencia
+  }
+
+  class Sistema {
+    
+    +conectarColegioMedico()
+    +enviarEmail()
+    +generarReporte()
+  }
+
+  Laboratorio  --> "1..*" Recepcionista : tiene
+  Laboratorio  --> "1..*" Paciente : tiene
+  Laboratorio  --> "1..*" Medico : tiene
+  Laboratorio --> "1..*" Extraccionista : tiene
+  Laboratorio  --> "1" ResponsableAnalisis : tiene
+  Laboratorio "1..*" -- "1..*" Estudio : incluye
+  Laboratorio  --> "1" Sistema : utiliza
+
+  Medico --|> Paciente : atiende
+  Extraccionista --|> Laboratorio : atiende
+  ResponsableAnalisis --|> Laboratorio : gestiona
+
+  Recepcionista --|> Sistema : utiliza
+  Medico --|> Sistema : utiliza
+  Paciente --|> Sistema : utiliza
+  Extraccionista --|> Sistema : utiliza
+  ResponsableAnalisis --|> Sistema : utiliza
+
+  Sistema --|> ColegioMedico : utiliza
+  Sistema --|> EmailSender : utiliza
+  Sistema --|> ReportGenerator : utiliza
+
+
