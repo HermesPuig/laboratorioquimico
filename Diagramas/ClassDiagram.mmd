@@ -13,7 +13,17 @@ classDiagram
   class Recepcionista {
     +string nombre
     +string apellido
+
+    +solicitarReceta()
     +registrarSolicitud()
+    +ingresarAlSAC()
+    +RevisarReceta()
+    +SolicitarDNIPaciente()
+    +ingresarDNIalSAC()
+    +EscanearRecetaPDF()
+    +ConfirmarSolicitud()
+    +InformarAlPacienteQueVayaSalaDeEspera()
+
   }
 
   class Paciente {
@@ -23,24 +33,32 @@ classDiagram
     +string direccion
     +string telefono
     +string email
-    +registrarPaciente()
+
+    +DarDNIalRecepcionista()
+    +IngresarSusDatosSiVienePorPrimeraVez()
   }
 
   class Medico {
     +string nombre
     +string apellido
     +string matricula
+    
+    +solicitarAnalisis()
     +validarMatricula()
   }
 
   class Extraccionista {
     +string nombre
     +string apellido
-    +asignarSolicitud()
-    +registrarMuestra()
+    +RecibirSolicitud()
+    +registrarMuestras()
+
   }
 
   class ResponsableAnalisis {
+    +str nombre
+    +str descripcion
+
     +registrarResultado()
   }
 
@@ -50,13 +68,26 @@ classDiagram
     +string metodo
     +string unidadMedida
     +string rangoReferencia
+
+
   }
 
-  class Sistema {
-    
-    +conectarColegioMedico()
+  class SAC {
+    +str nombre
+    +str descripcion
+
+    +validarMatriculaMedico()
+    +conectarconWebServiceColegioMedico()
     +enviarEmail()
     +generarReporte()
+    +MostrarDatosPaciente()
+    +InformarQueNoEstaRegistrado()
+    +HabiltarBotonRegistro()
+    +GenerarListaEstudios()
+    +RegistrarSolicitud()
+    +ActualizarPantallasConDatosPaciente()
+    +asignarSolicitud()
+    +ActualizarSolicitudYinformarEnPantalla()
   }
 
   Laboratorio  --> "1..*" Recepcionista : tiene
@@ -65,20 +96,15 @@ classDiagram
   Laboratorio --> "1..*" Extraccionista : tiene
   Laboratorio  --> "1" ResponsableAnalisis : tiene
   Laboratorio "1..*" -- "1..*" Estudio : incluye
-  Laboratorio  --> "1" Sistema : utiliza
+  Laboratorio  --> "1" SAC : utiliza
 
   Medico --|> Paciente : atiende
   Extraccionista --|> Laboratorio : atiende
   ResponsableAnalisis --|> Laboratorio : gestiona
 
-  Recepcionista --|> Sistema : utiliza
-  Medico --|> Sistema : utiliza
-  Paciente --|> Sistema : utiliza
-  Extraccionista --|> Sistema : utiliza
-  ResponsableAnalisis --|> Sistema : utiliza
-
-  Sistema --|> ColegioMedico : utiliza
-  Sistema --|> EmailSender : utiliza
-  Sistema --|> ReportGenerator : utiliza
-
+  Recepcionista --|> SAC : utiliza
+  Medico --|> SAC : utiliza
+  Paciente --|> SAC : utiliza
+  Extraccionista --|> SAC : utiliza
+  ResponsableAnalisis --|> SAC : utiliza
 
