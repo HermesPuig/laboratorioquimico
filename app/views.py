@@ -5,5 +5,8 @@ from django.http import HttpResponse
 def home(request):
     return render(request, "home.html")
 
-def test(request):
-    return HttpResponse("<h1>Estas en Log In :)</h1>")  # Corregir esta línea
+def login(request):
+    return render(request, "login.html")
+
+def solicitud(request):
+    return render(request, "solicitud.html")
