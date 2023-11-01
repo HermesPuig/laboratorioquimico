@@ -1,110 +1,90 @@
 classDiagram
   
-    class Laboratorio {
-    +int numeroSolicitud
-    +string fechaSolicitud
-    +string estado
-    +string fechaFinalizacion
-    +registrarSolicitud()
-    +actualizarEstado()
-    +generarInforme()
+  class Consulta{
+  -string nombre
+  -string descripcion
+
+  +new()
   }
 
-  class Recepcionista {
-    +string nombre
-    +string apellido
 
+  class Pedido {
+    +string Legajo
+    +string descripcion
+    +string estadoPedido
+    +date Fecha
+    +string receta
+    
+    +new()
     +solicitarReceta()
-    +registrarSolicitud()
-    +ingresarAlSAC()
-    +RevisarReceta()
+    +abrirPaginaParaingresarLaSolicitud()
+    +RevisarFechaReceta()
+    +ValidarMPConWebService()
+    +MostrarNombreyApellidoMedicoPostValidacion()
     +SolicitarDNIPaciente()
     +ingresarDNIalSAC()
-    +EscanearRecetaPDF()
+    +MostrardatosdeUsuario()
+    +habilitarModificacióndeDatosdecontacto()
+    +InformarSiNoestaRegistrado()
+    +habilitarBotondeRegistro()
     +ConfirmarSolicitud()
-    +InformarAlPacienteQueVayaSalaDeEspera()
+    +AsignarExtraccionista()
+    
 
   }
 
-  class Paciente {
+  class estadoPedido{
+  +string nombre
+  +string descripcion
+
+  +new()
+  }
+
+  class receta{
+    +string AnalisisSolicitado
+    +string MedicamentoSolicitado
+    +date Fecha
+    +string nombreMedico
+    +int MP
+
+    +new()
+  }
+
+  class mediciones{
+    +string nombreMedicamento
+    +int CantML
+
+    +new()
+  }
+
+  class Usuario{
     +string nombre
-    +string apellido
+    +string descripcion
     +string documento
     +string direccion
     +string telefono
     +string email
 
-    +DarDNIalRecepcionista()
-    +IngresarSusDatosSiVienePorPrimeraVez()
+    +new()
+    +presentarReceta()
+    +presentarDocumento()
   }
 
-  class Medico {
+
+  class ResultadodePedidoMedico {
     +string nombre
-    +string apellido
-    +string matricula
-    
-    +solicitarAnalisis()
-    +validarMatricula()
+    +string descripcion
+
+    +new()
+    +EscanearRecetaPDF()
+    +InformarAlPacienteQueVayaSalaDeEspera()
+    +enviarRecetaalPaciente()
   }
 
-  class Extraccionista {
-    +string nombre
-    +string apellido
-    +RecibirSolicitud()
-    +registrarMuestras()
 
-  }
-
-  class ResponsableAnalisis {
-    +str nombre
-    +str descripcion
-
-    +registrarResultado()
-  }
-
-  class Estudio {
-    +string codigo
-    +string nombre
-    +string metodo
-    +string unidadMedida
-    +string rangoReferencia
-
-
-  }
-
-  class SAC {
-    +str nombre
-    +str descripcion
-
-    +validarMatriculaMedico()
-    +conectarconWebServiceColegioMedico()
-    +enviarEmail()
-    +generarReporte()
-    +MostrarDatosPaciente()
-    +InformarQueNoEstaRegistrado()
-    +HabiltarBotonRegistro()
-    +GenerarListaEstudios()
-    +RegistrarSolicitud()
-    +ActualizarPantallasConDatosPaciente()
-    +asignarSolicitud()
-    +ActualizarSolicitudYinformarEnPantalla()
-  }
-
-  Laboratorio  --> "1..*" Recepcionista : tiene
-  Laboratorio  --> "1..*" Paciente : tiene
-  Laboratorio  --> "1..*" Medico : tiene
-  Laboratorio --> "1..*" Extraccionista : tiene
-  Laboratorio  --> "1" ResponsableAnalisis : tiene
-  Laboratorio "1..*" -- "1..*" Estudio : incluye
-  Laboratorio  --> "1" SAC : utiliza
-
-  Medico --|> Paciente : atiende
-  Extraccionista --|> Laboratorio : atiende
-  ResponsableAnalisis --|> Laboratorio : gestiona
-
-  Recepcionista --|> SAC : utiliza
-  Medico --|> SAC : utiliza
-  Paciente --|> SAC : utiliza
-  Extraccionista --|> SAC : utiliza
-  ResponsableAnalisis --|> SAC : utiliza
-
+  receta  --> "1..*" ResultadodePedidoMedico : genera
+  Usuario  --> "1..*" Consulta : rellena
+  Consulta  --> "1..*" Pedido : rellena
+  Pedido  --> "1..*" estadoPedido : tiene
+  Pedido  --> "1..*" receta : requiere
+  receta  --> "1..*" mediciones : tiene
