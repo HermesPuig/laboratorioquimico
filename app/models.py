@@ -5,16 +5,27 @@ class Pedido(models.Model):
     descripcion = models.CharField (("descripcion pedido"),max_length=25)
     receta = models.CharField (("receta pedido"),max_length=25)
 
+class AnalisisDisponibles(models.Model):
+    NombreAnalisis = models.CharField("Analisis Disponibles", max_length=100)
+    descripcionAnalisis = models.CharField("Descripción del Analisis", max_length=300)
+
+    def __str__(self) -> str:
+        return self.NombreAnalisis
+    
+    
 class receta(models.Model):
-    analisissolicitado = models.CharField (("analisis receta"),max_length=25)
+    analisissolicitado = models.ForeignKey(AnalisisDisponibles, on_delete=models.CASCADE,max_length=30)
     medicamentosolicitado = models.CharField (max_length=25)
     nombremedico = models.CharField (max_length=25)
     fecha =  models.DateField (max_length=25)
     MP = models.CharField(max_length=25)
 
+
 class mediciones(models.Model):
     nombremedicamento = models.CharField(max_length=25)
     cantML = models.CharField(max_length=25)
+
+
 
 class TipoDocumento(models.Model):
     nombreTipoDocumento = models.CharField("Tipo de Documento", max_length=100)
@@ -23,6 +34,8 @@ class TipoDocumento(models.Model):
     def __str__(self) -> str:
         return self.nombreTipoDocumento
     
+
+
 class usuario(models.Model):
     nombre = models.CharField(max_length=25)
     descripcion = models.CharField(max_length=25)
