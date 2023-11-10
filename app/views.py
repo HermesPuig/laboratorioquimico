@@ -14,6 +14,9 @@ def medico(request):
 def registropaciente(request):
     return render(request, "registropaciente.html")
 
+def estudios(request):
+    return render(request, "estudios.html")
+
 def solicitud(request):
     return render(request, "solicitud.html")
 

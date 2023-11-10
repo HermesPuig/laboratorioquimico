@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +46,6 @@
       </div>
     </header>
 
-
-
     <div class="solicitud-box">  
 
        
@@ -57,16 +54,9 @@
         <form>
 
           <h2 class="solicitud-t" >Solicitud Analisis</h2>
-
-            <label class="fecha-receta" for="fecha">Fecha Receta</label>
-            <br><br>
-            <input type="date" id="fecha" name="fecha">
-            <br><br>
-    
          
             <input placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
     
-           
             <input placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
             <br><br>
 
@@ -75,7 +65,11 @@
             <button class="btn-solicitudv2" type="button">Ver</button>
 
             <br><br>  
-           
+            <label class="fecha-receta" for="fecha">Fecha Receta</label>
+            <br><br>
+            <input type="date" id="fecha" name="fecha">
+            <br><br>
+
             <input class="btn-solicitud2" type="submit" value="Enviar">
 
         </form>
