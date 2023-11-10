@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login</title>
+  <title>Seleccion Estudios</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,7 +29,6 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-</head>
 
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -39,7 +38,7 @@
       </div>
     </div>
   </div>
-
+  
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -47,26 +46,40 @@
     </div>
   </header>
 
-  <div class="login-box">   
+<body>
+
+    <h2>Selecciona tus opciones:</h2>
 
 
 
+<div class="estudios-box">  
 
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-        <h2 class="logina" >Iniciar Sesion</h2>
-        
-        <input type="text" name="username" class="inputlogin" placeholder="Tu Usuario" required="">
-        
-        <input type="password" name="password" class="inputlogin" placeholder="Tu Contraseña" required="">
+    <form method="post">
 
-        <button class="buttonlogin" type='sumbit'>
-            Ingresar
-        </button>
+        <h2 class="solicitud-t" >Estudios</h2>
+
+        <input type="checkbox" id="opcion1" name="opcion1">
+        <label for="opcion1"></label><br>
+
+        <input type="checkbox" id="opcion2" name="opcion2">
+        <label for="opcion2"></label><br>
+
+        <input type="checkbox" id="opcion3" name="opcion3">
+        <label for="opcion3"></label><br>
+
+        <input type="checkbox" id="opcion4" name="opcion4">
+        <label for="opcion4"></label><br>
+
+        <input type="checkbox" id="opcion5" name="opcion5">
+        <label for="opcion5"></label><br>
+
+        <input type="checkbox" id="opcion6" name="opcion6">
+        <label for="opcion6"></label><br>
+
+        <input class="btn-estudios" type="submit" value="Enviar">
+
     </form>
 
-
-
-
-
 </div>
+</body>
+</html>

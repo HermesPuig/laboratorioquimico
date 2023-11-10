@@ -1,13 +1,12 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Medilab Bootstrap Template - Index</title>
+  <title>Solicitud</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,58 +28,52 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+    
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+      <div class="container d-flex justify-content-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope"></i> <a href="joaquinparraga51@gmail.com">Contactanos</a>
+          <i class="bi bi-phone"></i> 351 701 0519
+        </div>
+      </div>
+    </div>
+    
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center">
+  
+        <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+      </div>
+    </header>
 
-<div class="container">
+    <div class="solicitud-box">  
 
-    <div class="section-title">
-      <h2>Consulta</h2>
-      <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+       
+      <body>
+    
+        <form>
+
+          <h2 class="solicitud-t" >Solicitud Analisis</h2>
+         
+            <input placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
+    
+            <input placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
+            <br><br>
+
+            <button class="btn-solicitud1" type="button">Ver</button>
+
+            <button class="btn-solicitudv2" type="button">Ver</button>
+
+            <br><br>  
+            <label class="fecha-receta" for="fecha">Fecha Receta</label>
+            <br><br>
+            <input type="date" id="fecha" name="fecha">
+            <br><br>
+
+            <input class="btn-solicitud2" type="submit" value="Enviar">
+
+        </form>
+      </body>
     </div>
 
-    <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-      <div class="row">
-        <div class="col-md-4 form-group">
-          <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group mt-3 mt-md-0">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-          <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group mt-3 mt-md-0">
-          <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 form-group mt-3">
-          <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group mt-3">
-          <select name="department" id="department" class="form-select">
-            <option value="">Select Department</option>
-            <option value="Department 1">Department 1</option>
-            <option value="Department 2">Department 2</option>
-            <option value="Department 3">Department 3</option>
-          </select>
-          <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group mt-3">
-          <select name="doctor" id="doctor" class="form-select">
-            <option value="">Select Doctor</option>
-            <option value="Doctor 1">Doctor 1</option>
-            <option value="Doctor 2">Doctor 2</option>
-            <option value="Doctor 3">Doctor 3</option>
-          </select>
-          <div class="validate"></div>
-        </div>
-      </div>
-
-      <div class="form-group mt-3">
-        <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-        <div class="validate"></div>
-      </div>
-    </form>
-
-  </div>
+    </html>
