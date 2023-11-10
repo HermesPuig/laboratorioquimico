@@ -1,0 +1,85 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Solicitud</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+    
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+      <div class="container d-flex justify-content-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope"></i> <a href="joaquinparraga51@gmail.com">Contactanos</a>
+          <i class="bi bi-phone"></i> 351 701 0519
+        </div>
+      </div>
+    </div>
+    
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center">
+  
+        <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+      </div>
+    </header>
+
+
+
+    <div class="solicitud-box">  
+
+       
+      <body>
+    
+        <form>
+
+          <h2 class="solicitud-t" >Solicitud Analisis</h2>
+
+            <label class="fecha-receta" for="fecha">Fecha Receta</label>
+            <br><br>
+            <input type="date" id="fecha" name="fecha">
+            <br><br>
+    
+         
+            <input placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
+    
+           
+            <input placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
+            <br><br>
+
+            <button class="btn-solicitud1" type="button">Ver</button>
+
+            <button class="btn-solicitudv2" type="button">Ver</button>
+
+            <br><br>  
+           
+            <input class="btn-solicitud2" type="submit" value="Enviar">
+
+        </form>
+      </body>
+    </div>
+
+    </html>
