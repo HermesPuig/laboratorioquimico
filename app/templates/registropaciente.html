@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+ 
+  <link href="{% static 'assets/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<title>Registro de Paciente</title>
+
+<div id="topbar" class="d-flex align-items-center fixed-top">
+  <div class="container d-flex justify-content-between">
+    <div class="contact-info d-flex align-items-center">
+      <i class="bi bi-envelope"></i> <a href="joaquinparraga51@gmail.com">Contactanos</a>
+      <i class="bi bi-phone"></i> 351 701 0519
+    </div>
+  </div>
+</div>
+
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+  </div>
+</header>
+
+</head>
+<body>
+    
+
+    <form class="registro-paciente" method="post">
+
+        <h2 class="registro-t" >Registro Paciente</h2>
+
+        <label for="dni"></label>
+        <input class="inputlogin" placeholder="DNI" type="text" id="dni" name="dni" required>
+        <label for="nombre"></label>
+        <input class="inputlogin" placeholder="Nombre" type="text" id="nombre" name="nombre" required>
+        <label for="apellido"></label>
+        <input class="inputlogin" placeholder="Apellido" type="text" id="apellido" name="apellido" required>
+        <label for="email"></label>
+        <input class="inputlogin" placeholder="Email" type="email" id="email" name="email" required>
+        <label for="telefono"></label>
+        <input class="inputlogin" placeholder="Telefono" type="tel" id="telefono" name="telefono" required>
+        <label for="direccion"></label>
+        <input class="inputlogin" placeholder="Direccion" type="text" id="direccion" name="direccion" required>
+        <label for="registrar"></label>
+        <button class="btn-registro" type="submit">Registrar</button>
+    </form>
+
+</body>
+</html>

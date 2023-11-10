@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Medilab Bootstrap Template - Index</title>
+  <title>Login</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,6 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
 
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -42,20 +43,30 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="home.html">SAC</a></h1>
+      <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
     </div>
   </header>
 
   <div class="login-box">   
-    <form>
+
+
+
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
         <h2 class="logina" >Iniciar Sesion</h2>
         
-        <input type="text" name="name" class="inputlogin" id="name" placeholder="Tu Usuario" required="">
+        <input type="text" name="username" class="inputlogin" placeholder="Tu Usuario" required="">
         
-        <input type="password" name="password" class="inputlogin" id="password" placeholder="Tu Contraseña" required="">
+        <input type="password" name="password" class="inputlogin" placeholder="Tu Contraseña" required="">
 
         <button class="buttonlogin" type='sumbit'>
             Ingresar
         </button>
     </form>
+
+
+
+
+
 </div>
