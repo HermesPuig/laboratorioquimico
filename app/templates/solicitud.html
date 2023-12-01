@@ -50,28 +50,39 @@
 
        
       <body>
+        
     
-        <form>
-
+        <form method="post" action="{% url 'solicitud' %}">
+          {% csrf_token %}
           <h2 class="solicitud-t" >Solicitud Analisis</h2>
          
-            <input placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
-    
-            <input placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
+            <input value="{% if request.POST.MP %}{{request.POST.MP}}{% endif %}" placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
+            {% if error_medico%}
+            {{error_medico}}
+            {% endif %}
+            <input value="{% if request.POST.DNIP %}{{request.POST.DNIP}}{% endif %}" placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
+            
             <br><br>
-
-            <button class="btn-solicitud1" type="button">Ver</button>
-
-            <button class="btn-solicitudv2" type="button">Ver</button>
-
+            {% if error_paciente%}
+            {{error_paciente}}
+            {% endif %}
             <br><br>  
             <label class="fecha-receta" for="fecha">Fecha Receta</label>
             <br><br>
             <input type="date" id="fecha" name="fecha">
             <br><br>
-
+            {% if error_diferencia%}
+            {{error_diferencia}}
+            {% endif %}
+            {% if error_fecha%}
+            {{error_fecha}}
+            {% endif %}
+            <br><br>
             <input class="btn-solicitud2" type="submit" value="Enviar">
 
+            {% if error_message%}
+            {{error_message}}
+            {% endif %}
         </form>
       </body>
     </div>

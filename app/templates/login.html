@@ -49,9 +49,6 @@
 
   <div class="login-box">   
 
-
-
-
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
         <h2 class="logina" >Iniciar Sesion</h2>
@@ -63,6 +60,10 @@
         <button class="buttonlogin" type='sumbit'>
             Ingresar
         </button>
+
+        {% if error_message%}
+        {{error_message}}
+        {% endif %}
     </form>
 
 
