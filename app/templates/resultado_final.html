@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  
+
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -48,27 +48,21 @@
 
 <body>
 
-    <h2>Selecciona tus opciones:</h2>
+    <div class="login-box">
 
 
 
-<div class="estudios-box">  
-
-    <form method="post">
-      {% csrf_token %}
-
-        <h2 class="solicitud-t" >Estudios</h2>
-
-        {% for estudio in estudios %}
-        <input type="checkbox" id="opcion" name="estudio{{estudio.id}}">
-        <label for="opcion1">{{ estudio.nombre }}</label><br>
+        
+        {% for estudio in solicitud.estudios.all %}
+        <h2 class="logina">{{ estudio.nombre }}: {{ estudio.valor_hallado }}</h2>
+    
         {% endfor %}
+    
+    
+    
+    
+    </div>
+    
 
-
-        <input class="btn-estudios" type="submit" value="Enviar">
-
-    </form>
-
-</div>
 </body>
 </html>

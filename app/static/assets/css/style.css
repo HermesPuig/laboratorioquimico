@@ -886,3 +886,36 @@ margin-left: 5px;
   color: #fff;
   text-decoration: none;
 }
+
+.panel_txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.solicitud_txt {
+  display: flex;
+  align-items: center;
+}
+
+.rectangulo_txt {
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+  margin-right: 10px;
+}
+
+.nombre_txt, .boton_txt {
+  margin-top: 10px;
+}
+
+.txt{
+  margin-top: 150px;
+}
+
+.cur{
+  cursor: pointer;
+
+}

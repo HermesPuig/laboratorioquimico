@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  
+
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -48,27 +48,30 @@
 
 <body>
 
-    <h2>Selecciona tus opciones:</h2>
+    <div class="login-box">
 
 
 
-<div class="estudios-box">  
 
-    <form method="post">
-      {% csrf_token %}
+        <form method="post" action="">
+          {% csrf_token %}
+            <h2 class="logina" >Ingresa el codigo de la solicitud</h2>
+    
+            <input type="text" name="codigo" class="inputlogin" placeholder="Codigo" required="">
+    
+            <label for="codigo"></label>
+    
+            <button class="buttonlogin" type='sumbit'>
+                Ingresar
+            </button>
+        </form>
+    
+    
+    
+    
+    
+    </div>
+    
 
-        <h2 class="solicitud-t" >Estudios</h2>
-
-        {% for estudio in estudios %}
-        <input type="checkbox" id="opcion" name="estudio{{estudio.id}}">
-        <label for="opcion1">{{ estudio.nombre }}</label><br>
-        {% endfor %}
-
-
-        <input class="btn-estudios" type="submit" value="Enviar">
-
-    </form>
-
-</div>
 </body>
 </html>
