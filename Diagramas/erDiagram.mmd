@@ -1,58 +1,58 @@
 erDiagram
     
-    Paciente {
+    Paciente{
         int DNI PK
         str Nombre
         str Apellido
         varchar Domicilio
-        varchar Teléfono
+        varchar Telefono
         varchar Email
     }
 
-    Médico {
+    Medico{
         int MP PK
         str Nombre
         str Apellido
     }
 
-    Recepcionista {
+    Recepcionista{
         int ID PK
         str Nombre
         str Apellido
     }
 
-    Estudio {
-        int Código PK
+    Estudio{
+        int Codigo PK
         str Nombre
         int RangodeReferencia
         int UnidaddeMedida
     }
 
-    SolicitudAnálisis {
-        int Número PK
+    SolicitudAnálisis{
+        int Numero PK
         date Fecha
         str Estado
     }
 
-    Receta {
-        int Número PK
+    Receta{
+        int Numero PK
         date Fecha
         pdf Escaneo 
     }
 
-    Muestra {
+    Muestra{
         int ID PK
         date Fecha
         date Hora
         str Extraccionista
     }
 
-    Resultado {
+    Resultado{
         int ID PK
         str ValorHallado
     }
 
-    Laboratorio {
+    Laboratorio{
         int IDlaboratorio PK
         str Nombre
     }
