@@ -1,5 +1,5 @@
 {% load static %}
-
+{% if user.is_authenticated %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,3 +72,8 @@
 </div>
 </body>
 </html>
+{% else %}
+	<script>
+	      window.location.href = "{% url 'index' %}";
+   	 </script>
+{% endif %}

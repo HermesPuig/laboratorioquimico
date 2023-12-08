@@ -1,6 +1,8 @@
 {% load static %}
 
 
+{% if user.is_authenticated %}
+{% if user.is_recep == False %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,8 +44,11 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+      <h1 class="logo me-auto"><a href= {%url "home" %} >SAC</a></h1>
+
+
     </div>
+
   </header>
 
 <body>
@@ -75,3 +80,13 @@
 </div>
 </body>
 </html>
+{% else %}
+<script>
+    window.location.href = "{% url 'solicitud' %}";
+</script>
+{% endif %}
+{% else %}
+<script>
+      window.location.href = "{% url 'home' %}";
+    </script>
+{% endif %}

@@ -178,3 +178,18 @@ class SolicitudView(View):
             context['error_diferencia'] = 'La fecha supera los 30 dias'
             
         return render(request, self.template_name,context)
+
+
+
+def menu_recepcionista(request):
+    return render(request,"menu_recepcionista.html")
+
+
+
+def menu_extraccionista(request):
+    return render(request,"menu_extraccionista.html")
+
+class MyLogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('home')

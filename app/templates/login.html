@@ -1,6 +1,15 @@
 {% load static %}
-
-
+{% if user.is_authenticated %}
+{% if user.is_recep %}
+<script>
+  window.location.href = "{% url 'solicitud' %}";
+</script>
+{% else %}
+<script>
+  window.location.href = "{% url 'extraccionista' %}";
+</script>
+{% endif %}
+{% else %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,3 +80,4 @@
 
 
 </div>
+{% endif %}

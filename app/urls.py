@@ -10,5 +10,8 @@ urlpatterns = [
     path("resultado/", ResultadoView.as_view(), name="resultado"),
     path("resultado_final/", resultado_final, name="resultado_final"),
     path("extraccionista/", extraccionista, name="extraccionista"),
+    path("menu_extraccionista/", menu_extraccionista, name="menu_extraccionista"),
+    path("menu_recepcionista/", menu_recepcionista, name="menu_recepcionista"),
+    path('logout/', MyLogoutView.as_view(), name='logout'),
 ]
 

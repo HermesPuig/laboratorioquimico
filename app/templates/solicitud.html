@@ -1,5 +1,6 @@
 {% load static %}
-
+{% if user.is_authenticated %}
+{% if user.is_recep %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +47,7 @@
         <h1 class="logo me-auto"><a href= {%url "home" %} >SAC</a></h1>
   
   
-        <a href="{% url 'login' %}" class="buttonh"><span class="d-none d-md-inline">Iniciar Sesion</a>
+        <a href="{% url 'menu_recepcionista' %}" class="buttonh"><span class="d-none d-md-inline">{{ user.username }}</a>
       </div>
   
     </header>
@@ -94,3 +95,14 @@
     </div>
 
     </html>
+    {% else %}
+    <script>
+        window.location.href = "{% url 'extraccionista' %}";
+    </script>
+    {% endif %}
+  {% else %}
+    <script>
+          window.location.href = "{% url 'home' %}";
+        </script>
+  {% endif %}
+  

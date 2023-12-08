@@ -1,5 +1,6 @@
 {% load static %}
-
+{% if user.is_authenticated %}
+{% if user.is_recep == False %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +40,12 @@
 <header id="header" class="fixed-top">
   <div class="container d-flex align-items-center">
 
-    <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+    <h1 class="logo me-auto"><a href= {%url "home" %} >SAC</a></h1>
+
+
+    <a href="{% url 'menu_extraccionista' %}" class="buttonh"><span class="d-none d-md-inline">{{ user.username }}</a>
   </div>
+
 </header>
 
 </head>
@@ -55,11 +60,23 @@
             </div>
             </a>
             {% endfor %}
-
-
+            {% if solicitudes|length == 0 %}
+            <h3 class="logina">No hay solicitudes entrantes.</h3>
+            {% endif %}
+        
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    
 </body>
 </html>
+{% else %}
+	<script>
+	    window.location.href = "{% url 'solicitud' %}";
+	</script>
+	{% endif %}
+  {% else %}
+	<script>
+	      window.location.href = "{% url 'home' %}";
+   	 </script>
+{% endif %}
