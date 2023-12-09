@@ -31,12 +31,22 @@ class RegPacienteView(View):
         nombre = request.POST['nombre']
         apellido = request.POST['apellido']
         direccion = request.POST['direccion']
+        email = request.POST['email']
 
-        try:
-            paciente = Paciente.objects.create(nombre=nombre, apellido=apellido, descripcion='', direccion=direccion, tipo_documento='DNI', documento=dni)
-            return render(request, self.template_name, {'success_message': 'Paciente Creado'})
-        except:
-            return render(request, self.template_name, {'error_message': 'Credenciales Inválidas'})
+        paciente_con_dni = Paciente.objects.filter(documento=dni).exists()
+        paciente_con_email = Paciente.objects.filter(email=email).exists()
+
+        if paciente_con_dni:
+            return render(request, self.template_name, {'error_message': 'El DNI ya existe en la base de datos.'})
+        if paciente_con_email:
+            return render(request, self.template_name, {'error_message': 'El correo electrónico ya existe en la base de datos.'})
+
+        else:
+            try:
+                paciente = Paciente.objects.create(nombre=nombre, apellido=apellido, email=email, descripcion='-', direccion=direccion, tipo_documento='DNI', documento=dni)
+                return render(request, self.template_name, {'success_message': 'Paciente Creado.'})
+            except:
+                return render(request, self.template_name, {'error_message': 'Credenciales Inválidas.'})
 
 
 class EstudiosView(View):
@@ -71,10 +81,11 @@ class ResultadoView(View):
     def post(self, request):
         codigo = request.POST.get('codigo')
         
-        solicitud = Solicitud.objects.get(id=codigo)
-        
-        return render(request, 'resultado_final.html', {'solicitud':  solicitud})
-
+        try:
+            solicitud = Solicitud.objects.get(id=codigo)
+            return render(request, 'resultado_final.html', {'solicitud':  solicitud})
+        except:
+            return render(request, self.template_name, {'error_message':  'El codigo ingresado no existe.'})
     
 def resultado_final(request):
     return render(request,"resultado_final.html")
@@ -148,36 +159,41 @@ class SolicitudView(View):
         paciente = Paciente.objects.filter(documento=DNI)
         medico = medicos.objects.filter(MP=MP)
         
-        if fechaForm:
-            
+        try:
             fecha = datetime.strptime(fechaForm, "%Y-%m-%d").date()
-
-            if fecha:
-                fecha_actual = datetime.now().date()
-                diferencia_dias = (fecha_actual - fecha).days
+            fecha_actual = datetime.now().date()
+            diferencia_dias = (fecha_actual - fecha).days
         
-        if paciente and medico and fecha and diferencia_dias >= 0 and diferencia_dias <= 30:
-            paciente = paciente.get()
-            medico = medico.get()
-            nuevaSolicitud = Solicitud.objects.create(MP=MP, DNI=DNI, fecha=fecha, paciente=paciente)
-            nuevaSolicitud.save()
+        
+            if paciente and medico and fecha and diferencia_dias >= 0 and diferencia_dias <= 30:
+                paciente = paciente.get()
+                medico = medico.get()
+                try:
+                    nuevaSolicitud = Solicitud.objects.create(MP=MP, DNI=DNI, fecha=fecha, paciente=paciente)
+                    nuevaSolicitud.save()
 
-            return redirect('estudios')
+                    return redirect('estudios')
+                except:
+                    context = {'error_message': 'Errores al procesar el formulario.'}
+    
 
-
-        context = {'error_message': 'errores al procesar el formulario'}
-        if not Paciente:
-            context['error_paciente'] = 'El paciente no existe'
-        if not medico:
-            context['error_medico'] = 'El medico no existe'
-        if not fecha:
-            context['error_fecha'] = 'La fecha no es correcta'
-        if diferencia_dias and diferencia_dias <= 0:
-            context['error_diferencia'] = 'La fecha supera la fecha actual'
-        elif diferencia_dias and diferencia_dias > 30:
-            context['error_diferencia'] = 'La fecha supera los 30 dias'
+            context = {'error_message': 'Errores al procesar el formulario.'}
+            if not Paciente:
+                context['error_paciente'] = 'El paciente no existe'
+            if not medico:
+                context['error_medico'] = 'El medico no existe'
+            if not fecha:
+                context['error_fecha'] = 'La fecha no es correcta'
+            if diferencia_dias and diferencia_dias <= 0:
+                context['error_diferencia'] = 'La fecha supera la fecha actual'
+            elif diferencia_dias and diferencia_dias > 30:
+                context['error_diferencia'] = 'La fecha supera los 30 dias'
             
-        return render(request, self.template_name,context)
+            return render(request, self.template_name,context)
+
+        except:
+            context = {'error_message': 'Errores al procesar el formulario.'}
+            return render(request, self.template_name,context)
 
 
 
@@ -204,7 +220,12 @@ class ConsultaPacientesView(View):
     def post(self, request):
         dni = request.POST.get('dni_paciente')
         
-        paciente = Paciente.objects.get(documento=dni)
+        try:
+            paciente = Paciente.objects.get(documento=dni)
+            return render(request, 'datos_paciente.html', {'paciente':  paciente})
+        except:
+            return render(request, self.template_name, {'error_message':  'El paciente no existe.'})
+
+            
         
-        return render(request, 'datos_paciente.html', {'paciente':  paciente})
 
