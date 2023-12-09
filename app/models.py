@@ -100,7 +100,7 @@ class Estudio(models.Model):
     valor_ref_min = models.CharField(("Valor Referencia Minimo"), max_length=50)
     valor_ref_max = models.CharField(("Valor Referencia Maximo"), max_length=50)
     valor_hallado = models.CharField(("Valor Hallado"), max_length=50, null=True)
-
+    unidad_medida = models.CharField(("Unidad de Medida"), max_length=10, null=True)
 
 class Solicitud(models.Model):
     ESTADO_CHOICES = [

@@ -46,23 +46,22 @@
     </div>
   </header>
 
-<body>
-
-    <div class="login-box">
-
-
-
-        
+<body class = "d-flex justify-content-center align-items-center vh-100">
+  <div class="container">
+    <div class="row">
+      <h4 class="logina">Resultados de la solicitud {{ solicitud.id }}:</h4>
+      <h4 class="logina3">Paciente: {{ solicitud.paciente.nombre }} {{ solicitud.paciente.apellido }}</h4>
+      <h4 class="logina3">DNI: {{ solicitud.DNI }}</h4>
+      <br>
+  </div>
+    <div class="row">
         {% for estudio in solicitud.estudios.all %}
-        <h2 class="logina">{{ estudio.nombre }}: {{ estudio.valor_hallado }}</h2>
-    
+            <div class="col-12 mb-3">
+                <h4 class="logina2">{{ estudio.nombre }}: {{ estudio.valor_hallado }} {{ estudio.unidad_medida }}</h4>
+            </div>
         {% endfor %}
-    
-    
-    
-    
     </div>
-    
+</div>
 
 </body>
 </html>

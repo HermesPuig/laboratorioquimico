@@ -7,7 +7,8 @@ from django.shortcuts import render
 from .models import *
 from .forms import RecetaForm
 from datetime import datetime
-from django.core.mail import send_mail
+from email.message import EmailMessage
+import smtplib
 
 def home(request):
     return render(request, "home.html")
@@ -83,9 +84,12 @@ class ResultadoView(View):
         
         try:
             solicitud = Solicitud.objects.get(id=codigo)
+            for estudio in solicitud.estudios.all():
+                print(f'{estudio.nombre}: {estudio.valor_hallado}')
             return render(request, 'resultado_final.html', {'solicitud':  solicitud})
         except:
             return render(request, self.template_name, {'error_message':  'El codigo ingresado no existe.'})
+    
     
 def resultado_final(request):
     return render(request,"resultado_final.html")
@@ -106,13 +110,39 @@ class SolicitudExtView(View):
         tus_estudios = Estudio.objects.all()
 
         values = [request.POST.get(f'value_{estudio.id}', '') for estudio in tus_estudios]
+        values_dict = {str(estudio.id): valor for estudio, valor in zip(tus_estudios, values)}
+
+        for estudio in solicitud.estudios.all():
+            valor = values_dict.get(str(estudio.id), '').strip()
+            if valor and valor.isdigit():
+                estudio.valor_hallado = valor
+                estudio.save()
+                print(f'{estudio}: {valor} - Guardado correctamente')
+            else:
+                print(f'{estudio}: {valor} - Valor no válido')
         
-        for estudio, valor in zip(solicitud.estudios.all(), values):
-            estudio.valor_hallado = valor
-            estudio.save()
+        try: 
+            codigo = solicitud.id
+            remitente = 'zapaperez08@gmail.com'
+            destinatario = f'{solicitud.paciente.email}'
+            mensaje = f'Podras ver tus resultados en la web: https://laboratoriosac.com/resultado/. Ingresando el codigo: {codigo}'
+            
 
-
-
+            email = EmailMessage()
+            email["From"] = remitente
+            email["To"] = destinatario
+            email["Subject"] = 'Resultados Laboratorio'
+            email.set_content(mensaje)
+        
+            smtp = smtplib.SMTP_SSL('smtp.gmail.com')
+            smtp.login(remitente, "oexr tsyg xubk gnfz")
+            smtp.sendmail(remitente, destinatario, email.as_string())
+            smtp.quit()
+            
+        except:
+            print('Hubo un error enviando el email.')
+        
+        
         solicitud.marcar_finalizada()
         
         return redirect('extraccionista')

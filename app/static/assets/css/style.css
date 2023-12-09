@@ -397,6 +397,27 @@ input[type=checkbox] {
   font-family: "Poppins", sans-serif;
 }
 
+.logina2 {
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 60px;
+  color: #315e88;
+  margin-left: 12px;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
+}
+
+.logina3 {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 60px;
+  color: #315e88;
+  margin-left: 12px;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
+}
+
+
 .solicitud-t {
   font-size: 30px;
   line-height: 1;
