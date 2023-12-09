@@ -15,4 +15,3 @@ urlpatterns = [
     path('logout/', MyLogoutView.as_view(), name='logout'),
     path('consulta_pacientes/', ConsultaPacientesView.as_view(), name='consulta_pacientes'),
 ]
-
