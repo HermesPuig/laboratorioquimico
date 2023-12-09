@@ -196,7 +196,6 @@ class SolicitudView(View):
             return render(request, self.template_name,context)
 
 
-
 def menu_recepcionista(request):
     return render(request,"menu_recepcionista.html")
 
