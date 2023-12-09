@@ -46,23 +46,23 @@
     </div>
   </header>
 
-<body>
+  <body class="d-flex align-items-center justify-content-center vh-100">
 
-    <div class="login-box">
+    <div class="login-box text-center">
 
 
 
 
         <form method="post" action="">
           {% csrf_token %}
-            <h2 class="logina" >Ingresa el codigo de la solicitud</h2>
-    
-            <input type="text" name="codigo" class="inputlogin" placeholder="Codigo" required="">
+            <h2 class="mb-4 logina" >Ingresa el codigo de la solicitud</h2>
+            <br>
+            <input type="text" name="codigo" class="inputlogin form-control mb-3" placeholder="Codigo" required="">
     
             <label for="codigo"></label>
             <br>
             {% if error_message%}
-            {{error_message}}
+            <div class="text-danger mb-3">{{ error_message }}</div>
             {% endif %}
           <br><br>
 
@@ -76,7 +76,9 @@
     
     
     </div>
+
     
+  
 
 </body>
 </html>

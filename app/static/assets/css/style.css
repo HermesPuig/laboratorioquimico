@@ -28,7 +28,6 @@ input[type=date] {
   border: 0.2em solid #315e88;
   padding: 7px 15px;
   margin-bottom: 20px;
-  margin-left: 200px;
   border-radius: 10px;
   color: #315e88;
 }
@@ -217,7 +216,6 @@ label {
     appearance: none;
     border: none;
     outline: none;
-    margin-left: 10px;
     border-bottom: .2em solid #315e88;
     background: rgba(#315e88, .2);
     border-radius: .2em .2em 0 0;
@@ -337,8 +335,8 @@ input[type=checkbox] {
     padding: 10px 40px;
     background-color: #315e88;
     color: #ffffff;
-    margin-left: 225px;
     border-radius: 50px;
+    margin-left: 27.5% !important;
     margin-bottom: 20px;
     transition: 1s;
     &:hover, &:focus, &:active {
@@ -424,7 +422,6 @@ input[type=checkbox] {
   margin-bottom: 60px;
   color: #315e88;
   font-weight: 700;
-  margin-left: 147px;
   letter-spacing: 0.5px;
   font-family: "Poppins", sans-serif;
 }
@@ -520,8 +517,7 @@ input[type=checkbox] {
 
 .registro-paciente {
   font-family: "Poppins", sans-serif;
-  margin-top: 150px;
-  margin-left: 515px;
+  margin-top: 100px;
 
 }
 

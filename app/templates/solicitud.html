@@ -56,42 +56,52 @@
     <div class="solicitud-box">  
 
        
-      <body>
+
+      <body class="d-flex align-items-center justify-content-center vh-100">
         
     
-        <form method="post" action="{% url 'solicitud' %}">
+        <form method="post" action="{% url 'solicitud' %}" class=" p-3 ">
           {% csrf_token %}
-          <h2 class="solicitud-t" >Solicitud Analisis</h2>
-         
-            <input value="{% if request.POST.MP %}{{request.POST.MP}}{% endif %}" placeholder="Ingresa MP Medico" class="inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
-            {% if error_medico%}
-            {{error_medico}}
-            {% endif %}
-            <input value="{% if request.POST.DNIP %}{{request.POST.DNIP}}{% endif %}" placeholder="Ingresa DNI Paciente" class="inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
-            
-            <br><br>
-            {% if error_paciente%}
-            {{error_paciente}}
-            {% endif %}
-            <br><br>  
-            <label class="fecha-receta" for="fecha">Fecha Receta</label>
-            <br><br>
-            <input type="date" id="fecha" name="fecha">
-            <br><br>
-            {% if error_diferencia%}
-            {{error_diferencia}}
-            {% endif %}
-            {% if error_fecha%}
-            {{error_fecha}}
-            {% endif %}
-            <br><br>
-            <input class="btn-solicitud2" type="submit" value="Enviar">
+          <h2 class="mb-4 text-center solicitud-t" >Solicitud Analisis</h2>
+          <br>
 
-            {% if error_message%}
-            {{error_message}}
+            <input value="{% if request.POST.MP %}{{request.POST.MP}}{% endif %}" placeholder="Ingresa MP Medico" class="form-control mb-3 inputsolicitud" type="text" id="MP" name="MP" pattern="[A-Za-z0-9]+" > 
+            {% if error_medico%}
+            <div class="text-danger mb-3">{{ error_medico }}</div>
+            {% endif %}
+            <input value="{% if request.POST.DNIP %}{{request.POST.DNIP}}{% endif %}" placeholder="Ingresa DNI Paciente" class="form-control mb-3 inputsolicitud" type="text" id="DNIP" name="DNIP" pattern="\d+" >
+            
+            <br>
+            {% if error_paciente %}
+            <div class="">{{ error_paciente }}</div>
+            {% endif %}
+            <br>
+            <label class="mb-3 fecha-receta" for="fecha">Fecha Receta</label>
+            <input type="date" id="fecha" name="fecha" class="form-control mb-3">
+            <br>
+            {% if error_diferencia %}
+
+            <div class="text-danger mb-3">
+              {{ error_diferencia }}
+            </div>
+      
+            {% endif %}
+            {% if error_fecha %}
+            <div class="text-danger mb-3">
+              {{ error_fecha }}
+            </div>
+            {% endif %}
+            <br>
+            <input class="btn-solicitud2 mx-auto" type="submit" value="Enviar">
+
+            {% if error_message %}
+            <div class="text-danger mt-3">{{ error_message }}</div>
             {% endif %}
         </form>
+
+
       </body>
+
     </div>
 
     </html>
