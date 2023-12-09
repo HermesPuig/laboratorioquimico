@@ -13,5 +13,6 @@ urlpatterns = [
     path("menu_extraccionista/", menu_extraccionista, name="menu_extraccionista"),
     path("menu_recepcionista/", menu_recepcionista, name="menu_recepcionista"),
     path('logout/', MyLogoutView.as_view(), name='logout'),
+    path('consulta_pacientes/', ConsultaPacientesView.as_view(), name='consulta_pacientes'),
 ]
 

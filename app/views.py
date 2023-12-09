@@ -193,3 +193,18 @@ class MyLogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('home')
+
+
+class ConsultaPacientesView(View):
+    template_name = 'consulta_pacientes.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        dni = request.POST.get('dni_paciente')
+        
+        paciente = Paciente.objects.get(documento=dni)
+        
+        return render(request, 'datos_paciente.html', {'paciente':  paciente})
+
