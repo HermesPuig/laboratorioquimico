@@ -50,20 +50,30 @@
     <br><br>
     <br><br>
     <br><br>
-
+    <label class="fecha-receta">
     {{ paciente.nombre }}    
     {{ paciente.apellido }}
-    <br>
-    Email: {{ paciente.email }}
-    <br>
+    </label>
+    <br>    <br>
+
+    <label class="fecha-receta">Email: {{ paciente.email }}</label>
+    <br>    <br>
+
+    <label class="fecha-receta">
     Descripcion: {{ paciente.descripcion }}
-    <br>
+    </label>
+    <br>    <br>
+
+    <label class="fecha-receta">
     Direccion: {{ paciente.direccion }}
-    <br>
+    </label>
+    <br>    <br>
+
+    <label class="fecha-receta">
     {{ paciente.tipo_documento }}:
     {{ paciente.documento }}
 
-
+</label>
 </body>
 </html>
 {% else %}
