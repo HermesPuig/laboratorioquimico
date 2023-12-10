@@ -51,18 +51,13 @@
 
   </header>
 
-<body>
-
-    <h2>Selecciona tus opciones:</h2>
-
-
-
+<body class="d-flex align-items-center justify-content-center">
 <div class="estudios-box">
 
     <form method="post">
         {% csrf_token %}
-
-        <h2 class="solicitud-t txt" >Resultados</h2>
+        <br><br>
+        <h2 class="solicitud-t txt" >Resultados:</h2>
 
     
         {% for estudio in solicitud.estudios.all %}
@@ -73,6 +68,7 @@
         {% endfor %}
 
         <label for="opcion5"></label><br>
+        <br>
         <input class="btn-estudios" type="submit" value="Enviar">
 
     </form>

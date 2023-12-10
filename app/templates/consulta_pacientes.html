@@ -43,6 +43,7 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href={%url "home" %}>SAC</a></h1>
+      <a href="{% url 'menu_recepcionista' %}" class="buttonh"><span class="d-none d-md-inline">Menu</a>
     </div>
   </header>
 
@@ -54,7 +55,7 @@
           {% csrf_token %}
             <h2 class="logina" >Ingresa el DNI del paciente</h2>
     
-            <input type="text" name="dni_paciente" class="inputlogin" placeholder="DNI Paciente" required="">
+            <input type="text" name="dni_paciente" class="form-control mb-3 inputlogin" placeholder="DNI Paciente" required="">
             <label for="dni_paciente"></label>
             <br>
             {% if error_message%}

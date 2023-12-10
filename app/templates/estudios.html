@@ -46,10 +46,7 @@
     </div>
   </header>
 
-<body>
-
-    <h2>Selecciona tus opciones:</h2>
-
+<body class="d-flex align-items-center justify-content-center vh-100">
 
 
 <div class="estudios-box">  
@@ -60,8 +57,8 @@
         <h2 class="solicitud-t" >Estudios</h2>
 
         {% for estudio in estudios %}
-        <input type="checkbox" id="opcion" name="estudio{{estudio.id}}">
-        <label for="opcion1">{{ estudio.nombre }}</label><br>
+        <input type="checkbox" id="opcion" name="estudio{{estudio.id}}" class="mb-3">
+        <label for="opcion1" >{{ estudio.nombre }}</label><br>
         {% endfor %}
 
 
