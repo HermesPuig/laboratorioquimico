@@ -47,7 +47,7 @@ class RegPacienteView(View):
                 paciente = Paciente.objects.create(nombre=nombre, apellido=apellido, email=email, descripcion='-', direccion=direccion, tipo_documento='DNI', documento=dni)
                 return render(request, self.template_name, {'success_message': 'Paciente Creado.'})
             except:
-                return render(request, self.template_name, {'error_message': 'Credenciales Inválidas.'})
+                return render(request, self.template_name, {'error_message': 'Hubo un error.'})
 
 
 class EstudiosView(View):
@@ -256,5 +256,27 @@ class ConsultaPacientesView(View):
             return render(request, self.template_name, {'error_message':  'El paciente no existe.'})
 
             
-        
+class CrearMedicoView(View):
+    template_name = 'crear_medico.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
 
+    def post(self, request):
+        nombre = request.POST['nombre']
+        especialidad = request.POST['especialidad']
+        matricula = request.POST['matricula']
+
+        medico_existe = medicos.objects.filter(MP=matricula).exists()
+
+        if medico_existe:
+            return render(request, self.template_name, {'error_message': 'La matricula ya existe en la base de datos.'})
+
+        else:
+            try:
+                medico = medicos.objects.create(nombremedico=nombre, especialidad=especialidad, MP=matricula)
+                return render(request, self.template_name, {'success_message': 'Medico Creado.'})
+            except:
+                return render(request, self.template_name, {'error_message': 'Hubo un error.'})
+            
+        
