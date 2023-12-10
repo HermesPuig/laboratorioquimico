@@ -59,15 +59,16 @@ class EstudiosView(View):
         return render(request, self.template_name, {'estudios':estudios})
 
     def post(self, request):
-        estudios = [int(key[7:]) for key in request.POST if key.startswith('estudio')]
+        estudios = []
+
+        for key in request.POST.keys():
+            if key.startswith('estudio'):
+                estudio_value = int(key[len('estudio'):]) # Extraer el número sin importar la longitud de la cadena después de 'estudio'.
+                estudios.append(estudio_value)
+
         solicitud = Solicitud.objects.last() 
-        estudios_list = []
-        
-        for i in range(len(estudios)):
-            estudios_list.append(estudios[i])
-        
-        
-        for estudio in estudios_list:
+                
+        for estudio in estudios:
             solicitud.estudios.add(estudio)
 
         return redirect('solicitud')
@@ -119,8 +120,7 @@ class SolicitudExtView(View):
                 estudio.save()
                 print(f'{estudio}: {valor} - Guardado correctamente')
             else:
-                print(f'{estudio}: {valor} - Valor no válido')
-        
+                print(f'{estudio}: {valor} - Valor no válido')        
         try: 
             codigo = solicitud.id
             remitente = 'zapaperez08@gmail.com'
